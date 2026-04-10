@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills — DEVCODE | Muhammed Mostafa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#050505] text-white font-sans overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur">
+        <div class="max-w-[1300px] mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-lg overflow-hidden border border-white/10 group-hover:border-[#4F8CFF]/40 transition-all duration-300">
+                    <img src="https://z-cdn-media.chatglm.cn/files/fa3d8afe-dd20-4909-8e6d-e099a023c8cb.png?auth_key=1875854641-fc73938f56da422d84761a4700b68db5-0-5911ea74b7e9fcfb734cd8e427ab2c16" alt="devcode" class="w-full h-full object-cover">
+                </div>
+                <div class="hidden sm:block">
+                    <div class="text-sm font-display font-semibold tracking-wide text-white leading-none">DEVCODE</div>
+                    <div class="text-[9px] font-mono uppercase tracking-[0.2em] text-[#4F8CFF]/60 leading-none mt-0.5">Web Solutions</div>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center gap-1">
+                <a href="index.html" class="nav-link text-sm font-medium text-gray-400 px-4 py-2 rounded-lg">Home</a>
+                <a href="skills.html" class="nav-link active text-sm font-medium px-4 py-2 rounded-lg">Skills</a>
+                <a href="projects.html" class="nav-link text-sm font-medium text-gray-400 px-4 py-2 rounded-lg">Projects</a>
+                <a href="contact.html" class="nav-link text-sm font-medium text-gray-400 px-4 py-2 rounded-lg">Contact</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="contact.html" class="hidden md:inline-flex items-center gap-2 btn-primary text-sm font-semibold px-5 py-2.5 rounded-lg transition-all duration-300">Let's Talk <iconify-icon icon="lucide:arrow-right" width="14"></iconify-icon></a>
+                <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400"><iconify-icon icon="lucide:menu" width="18" id="menuIcon"></iconify-icon></button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <div class="px-6 py-5 flex flex-col gap-1">
+                <a href="index.html" class="mobile-link">Home</a>
+                <a href="skills.html" class="mobile-link active">Skills</a>
+                <a href="projects.html" class="mobile-link">Projects</a>
+                <a href="contact.html" class="mobile-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-32 relative">
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="hero-gradient"></div>
+        </div>
+        <div class="max-w-[1300px] mx-auto px-6 relative z-10">
+            <!-- Header -->
+            <div class="mb-16 reveal-up">
+                <span class="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#4F8CFF]/70 mb-4 block">02 — Skills</span>
+                <h2 class="font-display font-semibold text-3xl md:text-5xl tracking-[-0.02em] leading-[1.1] mb-5">
+                    My Technical<br><span class="text-gray-600">Arsenal</span>
+                </h2>
+                <p class="text-base font-light text-gray-500 max-w-lg leading-relaxed">
+                    The technologies and tools I use daily to build fast, scalable, and beautiful web applications.
+                </p>
+            </div>
+
+            <!-- Skills Panels -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                <!-- Frontend -->
+                <div class="skills-panel rounded-2xl border border-white/5 bg-white/[0.02] p-7 reveal-up" style="animation-delay: 0.05s">
+                    <div class="flex items-center gap-3 mb-7">
+                        <div class="w-9 h-9 rounded-lg bg-[#4F8CFF]/10 border border-[#4F8CFF]/20 flex items-center justify-center">
+                            <iconify-icon icon="lucide:layout" width="17" class="text-[#4F8CFF]"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-semibold text-base">Frontend</h3>
+                        <div class="ml-auto text-[10px] font-mono text-gray-600 uppercase tracking-wider">6 skills</div>
+                    </div>
+                    <div class="space-y-5">
+                        <div class="skill-item" data-percent="85">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">JavaScript</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #4F8CFF, #6BA3FF)" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="75">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">TypeScript</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #3B82F6, #60A5FA)" data-width="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="82">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">React.js</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #60A5FA, #93C5FD)" data-width="82"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="75">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">Next.js</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #94A3B8, #CBD5E1)" data-width="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="92">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">Tailwind CSS</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #06B6D4, #22D3EE)" data-width="92"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="95">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">HTML / CSS</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #F59E0B, #FBBF24)" data-width="95"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend -->
+                <div class="skills-panel rounded-2xl border border-white/5 bg-white/[0.02] p-7 reveal-up" style="animation-delay: 0.1s">
+                    <div class="flex items-center gap-3 mb-7">
+                        <div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                            <iconify-icon icon="lucide:server" width="17" class="text-emerald-500"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-semibold text-base">Backend</h3>
+                        <div class="ml-auto text-[10px] font-mono text-gray-600 uppercase tracking-wider">6 skills</div>
+                    </div>
+                    <div class="space-y-5">
+                        <div class="skill-item" data-percent="85">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">Node.js</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #22C55E, #4ADE80)" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="85">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">Express.js</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #6B7280, #9CA3AF)" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="80">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">Python</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #3B82F6, #60A5FA)" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="88">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">MySQL</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #2563EB, #3B82F6)" data-width="88"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="82">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">MongoDB</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #16A34A, #22C55E)" data-width="82"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="90">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">REST APIs</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #818CF8, #A78BFA)" data-width="90"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DevOps & Tools -->
+                <div class="skills-panel rounded-2xl border border-white/5 bg-white/[0.02] p-7 reveal-up" style="animation-delay: 0.15s">
+                    <div class="flex items-center gap-3 mb-7">
+                        <div class="w-9 h-9 rounded-lg bg-[#818CF8]/10 border border-[#818CF8]/20 flex items-center justify-center">
+                            <iconify-icon icon="lucide:settings" width="17" class="text-[#818CF8]"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-semibold text-base">DevOps & Tools</h3>
+                        <div class="ml-auto text-[10px] font-mono text-gray-600 uppercase tracking-wider">6 skills</div>
+                    </div>
+                    <div class="space-y-5">
+                        <div class="skill-item" data-percent="85">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">Git</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #F97316, #FB923C)" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="88">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">GitHub</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #94A3B8, #E2E8F0)" data-width="88"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="70">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">Docker</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #0EA5E9, #38BDF8)" data-width="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="65">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">AWS</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #F59E0B, #FBBF24)" data-width="65"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="78">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">Figma</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #A855F7, #C084FC)" data-width="78"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="72">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[13px] font-medium text-gray-300">Linux / CLI</span>
+                                <span class="text-[12px] font-mono font-medium skill-percent text-gray-500">0%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full rounded-full" style="background: linear-gradient(90deg, #EAB308, #FACC15)" data-width="72"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="stat-card text-center p-6 rounded-xl border border-white/5 bg-white/[0.02] reveal-up" style="animation-delay: 0.1s">
+                    <div class="text-3xl font-display font-bold gradient-text mb-1.5" data-count="10">0</div>
+                    <div class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600">Projects Done</div>
+                </div>
+                <div class="stat-card text-center p-6 rounded-xl border border-white/5 bg-white/[0.02] reveal-up" style="animation-delay: 0.15s">
+                    <div class="text-3xl font-display font-bold gradient-text mb-1.5" data-count="1">0</div>
+                    <div class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600">Years Exp.</div>
+                </div>
+                <div class="stat-card text-center p-6 rounded-xl border border-white/5 bg-white/[0.02] reveal-up" style="animation-delay: 0.2s">
+                    <div class="text-3xl font-display font-bold gradient-text mb-1.5" data-count="18">0</div>
+                    <div class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600">Technologies</div>
+                </div>
+                <div class="stat-card text-center p-6 rounded-xl border border-white/5 bg-white/[0.02] reveal-up" style="animation-delay: 0.25s">
+                    <div class="text-3xl font-display font-bold gradient-text mb-1.5" data-count="100">0</div>
+                    <div class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600">% Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-10">
+        <div class="max-w-[1300px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded overflow-hidden"><img src="https://z-cdn-media.chatglm.cn/files/fa3d8afe-dd20-4909-8e6d-e099a023c8cb.png?auth_key=1875854641-fc73938f56da422d84761a4700b68db5-0-5911ea74b7e9fcfb734cd8e427ab2c16" alt="devcode" class="w-full h-full object-cover"></div>
+                <span class="text-xs text-gray-600 font-mono">© 2025 devcode. All rights reserved.</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="text-xs text-gray-500 hover:text-white transition-colors">Home</a>
+                <a href="skills.html" class="text-xs text-gray-500 hover:text-white transition-colors">Skills</a>
+                <a href="projects.html" class="text-xs text-gray-500 hover:text-white transition-colors">Projects</a>
+                <a href="contact.html" class="text-xs text-gray-500 hover:text-white transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn"><iconify-icon icon="lucide:chevron-up" width="18"></iconify-icon></button>
+    <script src="script.js"></script>
+</body>
+</html>

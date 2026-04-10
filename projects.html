@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects — DEVCODE | Muhammed Mostafa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#050505] text-white font-sans overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur">
+        <div class="max-w-[1300px] mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-lg overflow-hidden border border-white/10 group-hover:border-[#4F8CFF]/40 transition-all duration-300">
+                    <img src="https://z-cdn-media.chatglm.cn/files/fa3d8afe-dd20-4909-8e6d-e099a023c8cb.png?auth_key=1875854641-fc73938f56da422d84761a4700b68db5-0-5911ea74b7e9fcfb734cd8e427ab2c16" alt="devcode" class="w-full h-full object-cover">
+                </div>
+                <div class="hidden sm:block">
+                    <div class="text-sm font-display font-semibold tracking-wide text-white leading-none">DEVCODE</div>
+                    <div class="text-[9px] font-mono uppercase tracking-[0.2em] text-[#4F8CFF]/60 leading-none mt-0.5">Web Solutions</div>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center gap-1">
+                <a href="index.html" class="nav-link text-sm font-medium text-gray-400 px-4 py-2 rounded-lg">Home</a>
+                <a href="skills.html" class="nav-link text-sm font-medium text-gray-400 px-4 py-2 rounded-lg">Skills</a>
+                <a href="projects.html" class="nav-link active text-sm font-medium px-4 py-2 rounded-lg">Projects</a>
+                <a href="contact.html" class="nav-link text-sm font-medium text-gray-400 px-4 py-2 rounded-lg">Contact</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="contact.html" class="hidden md:inline-flex items-center gap-2 btn-primary text-sm font-semibold px-5 py-2.5 rounded-lg transition-all duration-300">Let's Talk <iconify-icon icon="lucide:arrow-right" width="14"></iconify-icon></a>
+                <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400"><iconify-icon icon="lucide:menu" width="18" id="menuIcon"></iconify-icon></button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <div class="px-6 py-5 flex flex-col gap-1">
+                <a href="index.html" class="mobile-link">Home</a>
+                <a href="skills.html" class="mobile-link">Skills</a>
+                <a href="projects.html" class="mobile-link active">Projects</a>
+                <a href="contact.html" class="mobile-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-32 relative">
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="hero-gradient" style="opacity: 0.5"></div>
+        </div>
+        <div class="max-w-[1300px] mx-auto px-6 relative z-10">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 reveal-up">
+                <div>
+                    <span class="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#4F8CFF]/70 mb-4 block">03 — Projects</span>
+                    <h2 class="font-display font-semibold text-3xl md:text-5xl tracking-[-0.02em] leading-[1.1]">
+                        Selected<br><span class="text-gray-600">Work</span>
+                    </h2>
+                </div>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                    <div class="relative">
+                        <iconify-icon icon="lucide:search" width="16" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"></iconify-icon>
+                        <input id="projectSearch" type="text" placeholder="Search..." class="bg-white/5 border border-white/5 rounded-lg pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-[#4F8CFF]/30 transition-colors w-52">
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="web">Web</button>
+                        <button class="filter-btn" data-filter="mobile">Mobile</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                <div class="project-card group rounded-xl border border-white/5 bg-white/[0.02] overflow-hidden transition-all duration-500" data-category="web" data-name="Portfolio Website">
+                    <div class="aspect-[16/9] overflow-hidden relative">
+                        <img src="https://picsum.photos/seed/devcode-port/800/450.jpg" alt="Portfolio Website" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute top-3 left-3">
+                            <span class="text-[10px] font-mono font-bold uppercase tracking-wider bg-[#4F8CFF]/15 text-[#4F8CFF] border border-[#4F8CFF]/20 rounded-md px-2.5 py-1">Web App</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display font-semibold text-base mb-1.5 group-hover:text-[#4F8CFF] transition-colors duration-300">Portfolio Website</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed mb-4">Full-stack portfolio showcasing projects and skills with smooth animations and modern design.</p>
+                        <div class="flex items-center gap-1.5 flex-wrap mb-4">
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">React</span>
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">Node.js</span>
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">MongoDB</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-medium text-[#4F8CFF]/70 hover:text-[#4F8CFF] transition-colors">Live <iconify-icon icon="lucide:external-link" width="12"></iconify-icon></a>
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-medium text-gray-600 hover:text-white transition-colors">Code <iconify-icon icon="lucide:github" width="12"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card group rounded-xl border border-white/5 bg-white/[0.02] overflow-hidden transition-all duration-500" data-category="web" data-name="Restaurant Website">
+                    <div class="aspect-[16/9] overflow-hidden relative">
+                        <img src="https://picsum.photos/seed/devcode-rest/800/450.jpg" alt="Restaurant Website" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute top-3 left-3">
+                            <span class="text-[10px] font-mono font-bold uppercase tracking-wider bg-[#4F8CFF]/15 text-[#4F8CFF] border border-[#4F8CFF]/20 rounded-md px-2.5 py-1">Web App</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display font-semibold text-base mb-1.5 group-hover:text-[#4F8CFF] transition-colors duration-300">Restaurant Website</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed mb-4">Modern restaurant site with menu browsing, online reservation, and stunning gallery section.</p>
+                        <div class="flex items-center gap-1.5 flex-wrap mb-4">
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">Next.js</span>
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">Tailwind</span>
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">Stripe</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-medium text-[#4F8CFF]/70 hover:text-[#4F8CFF] transition-colors">Live <iconify-icon icon="lucide:external-link" width="12"></iconify-icon></a>
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-medium text-gray-600 hover:text-white transition-colors">Code <iconify-icon icon="lucide:github" width="12"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card group rounded-xl border border-white/5 bg-white/[0.02] overflow-hidden transition-all duration-500" data-category="mobile" data-name="E-Commerce Mobile App">
+                    <div class="aspect-[16/9] overflow-hidden relative">
+                        <img src="https://picsum.photos/seed/devcode-ecom/800/450.jpg" alt="E-Commerce App" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute top-3 left-3">
+                            <span class="text-[10px] font-mono font-bold uppercase tracking-wider bg-[#818CF8]/15 text-[#818CF8] border border-[#818CF8]/20 rounded-md px-2.5 py-1">Mobile</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display font-semibold text-base mb-1.5 group-hover:text-[#4F8CFF] transition-colors duration-300">E-Commerce Mobile App</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed mb-4">Feature-rich e-commerce app with product catalog, cart, checkout, and payment integration.</p>
+                        <div class="flex items-center gap-1.5 flex-wrap mb-4">
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">React Native</span>
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">Firebase</span>
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">Redux</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-medium text-[#4F8CFF]/70 hover:text-[#4F8CFF] transition-colors">Live <iconify-icon icon="lucide:external-link" width="12"></iconify-icon></a>
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-medium text-gray-600 hover:text-white transition-colors">Code <iconify-icon icon="lucide:github" width="12"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card group rounded-xl border border-white/5 bg-white/[0.02] overflow-hidden transition-all duration-500" data-category="web" data-name="Task Management Dashboard">
+                    <div class="aspect-[16/9] overflow-hidden relative">
+                        <img src="https://picsum.photos/seed/devcode-task/800/450.jpg" alt="Task Dashboard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute top-3 left-3">
+                            <span class="text-[10px] font-mono font-bold uppercase tracking-wider bg-[#4F8CFF]/15 text-[#4F8CFF] border border-[#4F8CFF]/20 rounded-md px-2.5 py-1">Web App</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display font-semibold text-base mb-1.5 group-hover:text-[#4F8CFF] transition-colors duration-300">Task Management Dashboard</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed mb-4">Collaborative dashboard with real-time updates, drag-and-drop, and team features.</p>
+                        <div class="flex items-center gap-1.5 flex-wrap mb-4">
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">React</span>
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">Socket.io</span>
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">Express</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-medium text-[#4F8CFF]/70 hover:text-[#4F8CFF] transition-colors">Live <iconify-icon icon="lucide:external-link" width="12"></iconify-icon></a>
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-medium text-gray-600 hover:text-white transition-colors">Code <iconify-icon icon="lucide:github" width="12"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card group rounded-xl border border-white/5 bg-white/[0.02] overflow-hidden transition-all duration-500" data-category="mobile" data-name="Fitness Tracker App">
+                    <div class="aspect-[16/9] overflow-hidden relative">
+                        <img src="https://picsum.photos/seed/devcode-fit/800/450.jpg" alt="Fitness Tracker" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute top-3 left-3">
+                            <span class="text-[10px] font-mono font-bold uppercase tracking-wider bg-[#818CF8]/15 text-[#818CF8] border border-[#818CF8]/20 rounded-md px-2.5 py-1">Mobile</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display font-semibold text-base mb-1.5 group-hover:text-[#4F8CFF] transition-colors duration-300">Fitness Tracker App</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed mb-4">Cross-platform fitness app with workout logging, progress charts, and recommendations.</p>
+                        <div class="flex items-center gap-1.5 flex-wrap mb-4">
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">Flutter</span>
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">Dart</span>
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">Firebase</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-medium text-[#4F8CFF]/70 hover:text-[#4F8CFF] transition-colors">Live <iconify-icon icon="lucide:external-link" width="12"></iconify-icon></a>
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-medium text-gray-600 hover:text-white transition-colors">Code <iconify-icon icon="lucide:github" width="12"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card group rounded-xl border border-white/5 bg-white/[0.02] overflow-hidden transition-all duration-500" data-category="web" data-name="Blog Platform">
+                    <div class="aspect-[16/9] overflow-hidden relative">
+                        <img src="https://picsum.photos/seed/devcode-blog/800/450.jpg" alt="Blog Platform" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute top-3 left-3">
+                            <span class="text-[10px] font-mono font-bold uppercase tracking-wider bg-[#4F8CFF]/15 text-[#4F8CFF] border border-[#4F8CFF]/20 rounded-md px-2.5 py-1">Web App</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display font-semibold text-base mb-1.5 group-hover:text-[#4F8CFF] transition-colors duration-300">Blog Platform</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed mb-4">Modern blogging platform with rich text editor, SEO optimization, and social sharing.</p>
+                        <div class="flex items-center gap-1.5 flex-wrap mb-4">
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">Next.js</span>
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">Prisma</span>
+                            <span class="text-[10px] font-mono bg-white/5 rounded px-2 py-0.5 text-gray-500">PostgreSQL</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-medium text-[#4F8CFF]/70 hover:text-[#4F8CFF] transition-colors">Live <iconify-icon icon="lucide:external-link" width="12"></iconify-icon></a>
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-medium text-gray-600 hover:text-white transition-colors">Code <iconify-icon icon="lucide:github" width="12"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="noResults" class="hidden text-center py-20">
+                <iconify-icon icon="lucide:search-x" width="40" class="text-gray-700 mb-3"></iconify-icon>
+                <p class="text-gray-600 text-sm font-mono">No projects found.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5 py-10">
+        <div class="max-w-[1300px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded overflow-hidden"><img src="https://z-cdn-media.chatglm.cn/files/fa3d8afe-dd20-4909-8e6d-e099a023c8cb.png?auth_key=1875854641-fc73938f56da422d84761a4700b68db5-0-5911ea74b7e9fcfb734cd8e427ab2c16" alt="devcode" class="w-full h-full object-cover"></div>
+                <span class="text-xs text-gray-600 font-mono">© 2025 devcode. All rights reserved.</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="text-xs text-gray-500 hover:text-white transition-colors">Home</a>
+                <a href="skills.html" class="text-xs text-gray-500 hover:text-white transition-colors">Skills</a>
+                <a href="projects.html" class="text-xs text-gray-500 hover:text-white transition-colors">Projects</a>
+                <a href="contact.html" class="text-xs text-gray-500 hover:text-white transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn"><iconify-icon icon="lucide:chevron-up" width="18"></iconify-icon></button>
+    <script src="script.js"></script>
+</body>
+</html>

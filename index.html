@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEVCODE — Muhammed Mostafa | Web Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#050505] text-white font-sans overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur">
+        <div class="max-w-[1300px] mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-lg overflow-hidden border border-white/10 group-hover:border-[#4F8CFF]/40 transition-all duration-300">
+                    <img src="https://z-cdn-media.chatglm.cn/files/fa3d8afe-dd20-4909-8e6d-e099a023c8cb.png?auth_key=1875854641-fc73938f56da422d84761a4700b68db5-0-5911ea74b7e9fcfb734cd8e427ab2c16" alt="DevCode" class="w-full h-full object-cover">
+                </div>
+                <div class="hidden sm:block">
+                    <div class="text-sm font-display font-semibold tracking-wide text-white leading-none">DEVCODE</div>
+                    <div class="text-[9px] font-mono uppercase tracking-[0.2em] text-[#4F8CFF]/60 leading-none mt-0.5">Web Solutions</div>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center gap-1">
+                <a href="index.html" class="nav-link active text-sm font-medium px-4 py-2 rounded-lg">Home</a>
+                <a href="skills.html" class="nav-link text-sm font-medium text-gray-400 px-4 py-2 rounded-lg">Skills</a>
+                <a href="projects.html" class="nav-link text-sm font-medium text-gray-400 px-4 py-2 rounded-lg">Projects</a>
+                <a href="contact.html" class="nav-link text-sm font-medium text-gray-400 px-4 py-2 rounded-lg">Contact</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="contact.html" class="hidden md:inline-flex items-center gap-2 btn-primary text-sm font-semibold px-5 py-2.5 rounded-lg transition-all duration-300">
+                    Let's Talk
+                    <iconify-icon icon="lucide:arrow-right" width="14"></iconify-icon>
+                </a>
+                <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+                    <iconify-icon icon="lucide:menu" width="18" id="menuIcon"></iconify-icon>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <div class="px-6 py-5 flex flex-col gap-1">
+                <a href="index.html" class="mobile-link active">Home</a>
+                <a href="skills.html" class="mobile-link">Skills</a>
+                <a href="projects.html" class="mobile-link">Projects</a>
+                <a href="contact.html" class="mobile-link">Contact</a>
+                <a href="contact.html" class="btn-primary text-sm font-semibold px-5 py-3 rounded-lg text-center mt-3">Let's Talk</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="hero-gradient"></div>
+            <div class="hero-grid-pattern"></div>
+            <div class="orbit-ring orbit-1"></div>
+            <div class="orbit-ring orbit-2"></div>
+            <div class="orbit-ring orbit-3"></div>
+            <!-- Floating Code Snippets -->
+            <div class="code-float code-float-1 font-mono text-[#4F8CFF]/20 text-xs">&lt;div class="hero"&gt;</div>
+            <div class="code-float code-float-2 font-mono text-[#818CF8]/20 text-xs">const dev = true;</div>
+            <div class="code-float code-float-3 font-mono text-[#4F8CFF]/15 text-xs">export default App;</div>
+            <div class="code-float code-float-4 font-mono text-[#818CF8]/15 text-xs">{/* magic here */}</div>
+            <div class="code-float code-float-5 font-mono text-[#4F8CFF]/10 text-xs">npm run build</div>
+        </div>
+
+        <div class="relative z-10 max-w-[1300px] mx-auto px-6 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                <!-- Left: Text Content -->
+                <div class="order-2 lg:order-1">
+                    <div class="reveal-up">
+                        <div class="inline-flex items-center gap-2.5 bg-[#4F8CFF]/5 border border-[#4F8CFF]/15 rounded-full px-4 py-2 mb-8">
+                            <span class="w-1.5 h-1.5 bg-[#4F8CFF] rounded-full animate-pulse"></span>
+                            <span class="text-[11px] font-mono font-medium uppercase tracking-[0.15em] text-[#4F8CFF]/80">Available for freelance</span>
+                        </div>
+                    </div>
+
+                    <h1 class="font-display font-semibold text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.05] tracking-[-0.03em] mb-6 reveal-up" style="animation-delay: 0.1s">
+                        Hi, I'm<br>
+                        <span class="gradient-text">Muhammed</span><br>
+                        <span class="text-gray-600">Mostafa</span>
+                    </h1>
+
+                    <p class="text-base md:text-lg font-light text-gray-500 max-w-md mb-10 leading-relaxed reveal-up" style="animation-delay: 0.2s">
+                        Web Developer crafting clean, performant, and pixel-perfect digital experiences that make a difference.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4 reveal-up" style="animation-delay: 0.3s">
+                        <a href="contact.html" class="btn-primary inline-flex items-center gap-2.5 text-sm font-semibold px-7 py-3.5 rounded-lg transition-all duration-300">
+                            Get in Touch
+                            <iconify-icon icon="lucide:arrow-right" width="15"></iconify-icon>
+                        </a>
+                        <a href="#" class="inline-flex items-center gap-2.5 bg-white/5 hover:bg-white/8 text-white text-sm font-medium px-7 py-3.5 rounded-lg border border-white/10 hover:border-white/15 transition-all duration-300">
+                            <iconify-icon icon="lucide:file-text" width="15" class="text-gray-400"></iconify-icon>
+                            Download CV
+                        </a>
+                    </div>
+
+                    <div class="flex items-center gap-4 mt-10 reveal-up" style="animation-delay: 0.4s">
+                        <div class="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent"></div>
+                        <div class="flex items-center gap-3">
+                            <a href="#" class="social-icon w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-[#4F8CFF] hover:border-[#4F8CFF]/30 hover:bg-[#4F8CFF]/5 transition-all duration-300">
+                                <iconify-icon icon="lucide:github" width="16"></iconify-icon>
+                            </a>
+                            <a href="#" class="social-icon w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-[#4F8CFF] hover:border-[#4F8CFF]/30 hover:bg-[#4F8CFF]/5 transition-all duration-300">
+                                <iconify-icon icon="lucide:linkedin" width="16"></iconify-icon>
+                            </a>
+                            <a href="#" class="social-icon w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-[#4F8CFF] hover:border-[#4F8CFF]/30 hover:bg-[#4F8CFF]/5 transition-all duration-300">
+                                <iconify-icon icon="lucide:twitter" width="16"></iconify-icon>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Logo + Avatar Area -->
+                <div class="order-1 lg:order-2 flex justify-center reveal-scale" style="animation-delay: 0.2s">
+                    <div class="relative">
+                        <!-- Glow behind -->
+                        <div class="absolute inset-0 bg-[#4F8CFF]/10 rounded-full blur-[80px] scale-75"></div>
+                        <!-- Outer ring -->
+                        <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full border border-white/5 flex items-center justify-center">
+                            <!-- Animated border ring -->
+                            <div class="absolute inset-0 rounded-full animate-spin-slow" style="background: conic-gradient(from 0deg, transparent 0%, transparent 70%, #4F8CFF 100%); mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px)); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));"></div>
+                            <!-- Inner content -->
+                            <div class="w-52 h-52 md:w-64 md:h-64 rounded-full border border-white/10 bg-[#0a0a0a] flex items-center justify-center overflow-hidden relative">
+                                <img src="logo.webp" alt="DevCode" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60"></div>
+                                <!-- Online indicator -->
+                                <div class="absolute bottom-4 right-4 flex items-center gap-1.5 bg-[#0a0a0a]/80 backdrop-blur-sm border border-white/10 rounded-full px-2.5 py-1">
+                                    <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+                                    <span class="text-[10px] font-mono text-gray-400">online</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Floating badges -->
+                        <div class="absolute -top-2 -right-2 bg-[#0a0a0a] border border-white/10 rounded-xl px-3 py-2 float-badge" style="animation-delay: 0s">
+                            <div class="flex items-center gap-1.5">
+                                <iconify-icon icon="logos:react" width="16"></iconify-icon>
+                                <span class="text-[10px] font-mono text-gray-400">React</span>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-2 -left-2 bg-[#0a0a0a] border border-white/10 rounded-xl px-3 py-2 float-badge" style="animation-delay: 1s">
+                            <div class="flex items-center gap-1.5">
+                                <iconify-icon icon="logos:nodejs-icon" width="16"></iconify-icon>
+                                <span class="text-[10px] font-mono text-gray-400">Node.js</span>
+                            </div>
+                        </div>
+                        <div class="absolute top-1/2 -left-8 bg-[#0a0a0a] border border-white/10 rounded-xl px-3 py-2 float-badge" style="animation-delay: 2s">
+                            <div class="flex items-center gap-1.5">
+                                <iconify-icon icon="logos:tailwindcss-icon" width="14"></iconify-icon>
+                                <span class="text-[10px] font-mono text-gray-400">TW</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal-up" style="animation-delay: 0.6s">
+            <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-gray-600">Scroll</span>
+            <div class="w-5 h-8 rounded-full border border-white/10 flex justify-center pt-1.5">
+                <div class="w-1 h-2 bg-[#4F8CFF]/50 rounded-full animate-scroll-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-28 md:py-36 relative">
+        <div class="max-w-[1300px] mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+                <!-- Left Column -->
+                <div class="lg:col-span-5 reveal-left">
+                    <div class="sticky top-28">
+                        <span class="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#4F8CFF]/70 mb-4 block">01 — About</span>
+                        <h2 class="font-display font-semibold text-3xl md:text-4xl tracking-[-0.02em] leading-[1.15] mb-6">
+                            Building the web,<br>
+                            <span class="text-gray-600">one pixel at a time</span>
+                        </h2>
+                        <!-- Brand Logo Showcase -->
+                        <div class="mt-8 p-6 rounded-2xl border border-white/5 bg-white/[0.02]">
+                            <img src="https://z-cdn-media.chatglm.cn/files/fa3d8afe-dd20-4909-8e6d-e099a023c8cb.png?auth_key=1875854641-fc73938f56da422d84761a4700b68db5-0-5911ea74b7e9fcfb734cd8e427ab2c16" alt="DevCode Logo" class="w-28 h-28 object-contain mx-auto mb-4">
+                            <div class="text-center">
+                                <div class="font-display font-semibold text-sm tracking-widest text-white/80">DEVCODE</div>
+                                <div class="text-[10px] font-mono uppercase tracking-[0.25em] text-[#4F8CFF]/50 mt-1">Web Solutions & Systems</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="lg:col-span-7">
+                    <div class="reveal-right">
+                        <p class="text-base md:text-lg font-light text-gray-500 leading-[1.8] mb-6">
+                            I'm a Full-Stack Web Developer with 1+ years of experience building modern web applications. My passion lies in transforming complex problems into simple, beautiful, and intuitive digital solutions.
+                        </p>
+                        <p class="text-base md:text-lg font-light text-gray-500 leading-[1.8] mb-10">
+                            When I'm not coding, I'm exploring emerging technologies, contributing to open-source projects, and sharing knowledge with the developer community. I believe great software is built at the intersection of design and engineering.
+                        </p>
+                    </div>
+
+                    <!-- Skill Highlights -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="about-skill-card group p-5 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500 reveal-up" style="animation-delay: 0.1s">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-lg bg-[#4F8CFF]/8 border border-[#4F8CFF]/15 flex items-center justify-center group-hover:border-[#4F8CFF]/30 group-hover:bg-[#4F8CFF]/12 transition-all duration-500">
+                                    <iconify-icon icon="lucide:code-2" width="18" class="text-[#4F8CFF]/70 group-hover:text-[#4F8CFF] transition-colors"></iconify-icon>
+                                </div>
+                                <h3 class="font-display font-medium text-sm">Clean Code</h3>
+                            </div>
+                            <p class="text-xs text-gray-600 leading-relaxed">Maintainable, scalable code following industry best practices.</p>
+                        </div>
+                        <div class="about-skill-card group p-5 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500 reveal-up" style="animation-delay: 0.15s">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-lg bg-[#818CF8]/8 border border-[#818CF8]/15 flex items-center justify-center group-hover:border-[#818CF8]/30 group-hover:bg-[#818CF8]/12 transition-all duration-500">
+                                    <iconify-icon icon="lucide:palette" width="18" class="text-[#818CF8]/70 group-hover:text-[#818CF8] transition-colors"></iconify-icon>
+                                </div>
+                                <h3 class="font-display font-medium text-sm">Creative Design</h3>
+                            </div>
+                            <p class="text-xs text-gray-600 leading-relaxed">Visually stunning interfaces with exceptional user experience.</p>
+                        </div>
+                        <div class="about-skill-card group p-5 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500 reveal-up" style="animation-delay: 0.2s">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-500/8 border border-emerald-500/15 flex items-center justify-center group-hover:border-emerald-500/30 group-hover:bg-emerald-500/12 transition-all duration-500">
+                                    <iconify-icon icon="lucide:zap" width="18" class="text-emerald-500/70 group-hover:text-emerald-500 transition-colors"></iconify-icon>
+                                </div>
+                                <h3 class="font-display font-medium text-sm">Performance</h3>
+                            </div>
+                            <p class="text-xs text-gray-600 leading-relaxed">Optimized for speed, efficiency, and seamless interactions.</p>
+                        </div>
+                        <div class="about-skill-card group p-5 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500 reveal-up" style="animation-delay: 0.25s">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-lg bg-amber-500/8 border border-amber-500/15 flex items-center justify-center group-hover:border-amber-500/30 group-hover:bg-amber-500/12 transition-all duration-500">
+                                    <iconify-icon icon="lucide:smartphone" width="18" class="text-amber-500/70 group-hover:text-amber-500 transition-colors"></iconify-icon>
+                                </div>
+                                <h3 class="font-display font-medium text-sm">Responsive</h3>
+                            </div>
+                            <p class="text-xs text-gray-600 leading-relaxed">Pixel-perfect layouts across every device and screen size.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 flex items-center gap-4 reveal-up" style="animation-delay: 0.3s">
+                        <a href="projects.html" class="btn-primary inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-300">
+                            View My Work
+                            <iconify-icon icon="lucide:arrow-right" width="14"></iconify-icon>
+                        </a>
+                        <a href="skills.html" class="text-sm font-medium text-gray-500 hover:text-[#4F8CFF] transition-colors duration-300">
+                            See Skills →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-10">
+        <div class="max-w-[1300px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded overflow-hidden">
+                    <img src="https://z-cdn-media.chatglm.cn/files/fa3d8afe-dd20-4909-8e6d-e099a023c8cb.png?auth_key=1875854641-fc73938f56da422d84761a4700b68db5-0-5911ea74b7e9fcfb734cd8e427ab2c16" alt="DevCode" class="w-full h-full object-cover">
+                </div>
+                <span class="text-xs text-gray-600 font-mono">© 2025 DevCode. All rights reserved.</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="text-xs text-gray-500 hover:text-white transition-colors">Home</a>
+                <a href="skills.html" class="text-xs text-gray-500 hover:text-white transition-colors">Skills</a>
+                <a href="projects.html" class="text-xs text-gray-500 hover:text-white transition-colors">Projects</a>
+                <a href="contact.html" class="text-xs text-gray-500 hover:text-white transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn">
+        <iconify-icon icon="lucide:chevron-up" width="18"></iconify-icon>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

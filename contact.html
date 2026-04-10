@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — DEVCODE | Muhammed Mostafa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#050505] text-white font-sans overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur">
+        <div class="max-w-[1300px] mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-lg overflow-hidden border border-white/10 group-hover:border-[#4F8CFF]/40 transition-all duration-300">
+                    <img src="https://z-cdn-media.chatglm.cn/files/fa3d8afe-dd20-4909-8e6d-e099a023c8cb.png?auth_key=1875854641-fc73938f56da422d84761a4700b68db5-0-5911ea74b7e9fcfb734cd8e427ab2c16" alt="DevCode" class="w-full h-full object-cover">
+                </div>
+                <div class="hidden sm:block">
+                    <div class="text-sm font-display font-semibold tracking-wide text-white leading-none">DEVCODE</div>
+                    <div class="text-[9px] font-mono uppercase tracking-[0.2em] text-[#4F8CFF]/60 leading-none mt-0.5">Web Solutions</div>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center gap-1">
+                <a href="index.html" class="nav-link text-sm font-medium text-gray-400 px-4 py-2 rounded-lg">Home</a>
+                <a href="skills.html" class="nav-link text-sm font-medium text-gray-400 px-4 py-2 rounded-lg">Skills</a>
+                <a href="projects.html" class="nav-link text-sm font-medium text-gray-400 px-4 py-2 rounded-lg">Projects</a>
+                <a href="contact.html" class="nav-link active text-sm font-medium px-4 py-2 rounded-lg">Contact</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="contact.html" class="hidden md:inline-flex items-center gap-2 btn-primary text-sm font-semibold px-5 py-2.5 rounded-lg transition-all duration-300">Let's Talk <iconify-icon icon="lucide:arrow-right" width="14"></iconify-icon></a>
+                <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400"><iconify-icon icon="lucide:menu" width="18" id="menuIcon"></iconify-icon></button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <div class="px-6 py-5 flex flex-col gap-1">
+                <a href="index.html" class="mobile-link">Home</a>
+                <a href="skills.html" class="mobile-link">Skills</a>
+                <a href="projects.html" class="mobile-link">Projects</a>
+                <a href="contact.html" class="mobile-link active">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-32 relative">
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="hero-gradient"></div>
+            <div class="code-float code-float-1 font-mono text-[#4F8CFF]/10 text-xs">&lt;form action="/contact"&gt;</div>
+            <div class="code-float code-float-3 font-mono text-[#818CF8]/10 text-xs">await sendEmail();</div>
+        </div>
+        <div class="max-w-[1300px] mx-auto px-6 relative z-10">
+            <!-- Header -->
+            <div class="mb-16 reveal-up">
+                <span class="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#4F8CFF]/70 mb-4 block">04 — Contact</span>
+                <h2 class="font-display font-semibold text-3xl md:text-5xl tracking-[-0.02em] leading-[1.1] mb-5">
+                    Let's build<br><span class="text-gray-600">something great</span>
+                </h2>
+                <p class="text-base font-light text-gray-500 max-w-lg leading-relaxed">
+                    Have a project in mind or just want to say hello? I'd love to hear from you.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+                <!-- Left: Info -->
+                <div class="lg:col-span-4 space-y-4 reveal-left">
+                    <a href="mailto:muhammed@devcode.com" class="contact-card group flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
+                        <div class="w-11 h-11 rounded-lg bg-[#4F8CFF]/8 border border-[#4F8CFF]/15 flex items-center justify-center flex-shrink-0 group-hover:border-[#4F8CFF]/30 transition-all duration-500">
+                            <iconify-icon icon="lucide:mail" width="18" class="text-[#4F8CFF]/70 group-hover:text-[#4F8CFF] transition-colors"></iconify-icon>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-0.5">Email</div>
+                            <div class="text-sm font-medium text-gray-300">muhammed@devcode.com</div>
+                        </div>
+                    </a>
+
+                    <a href="tel:+201234567890" class="contact-card group flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
+                        <div class="w-11 h-11 rounded-lg bg-emerald-500/8 border border-emerald-500/15 flex items-center justify-center flex-shrink-0 group-hover:border-emerald-500/30 transition-all duration-500">
+                            <iconify-icon icon="lucide:phone" width="18" class="text-emerald-500/70 group-hover:text-emerald-500 transition-colors"></iconify-icon>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-0.5">Phone</div>
+                            <div class="text-sm font-medium text-gray-300">+20 123 456 7890</div>
+                        </div>
+                    </a>
+
+                    <div class="contact-card group flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
+                        <div class="w-11 h-11 rounded-lg bg-[#818CF8]/8 border border-[#818CF8]/15 flex items-center justify-center flex-shrink-0 group-hover:border-[#818CF8]/30 transition-all duration-500">
+                            <iconify-icon icon="lucide:map-pin" width="18" class="text-[#818CF8]/70 group-hover:text-[#818CF8] transition-colors"></iconify-icon>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-0.5">Location</div>
+                            <div class="text-sm font-medium text-gray-300">Cairo, Egypt</div>
+                        </div>
+                    </div>
+
+                    <!-- Logo Card -->
+                    <div class="mt-6 p-5 rounded-xl border border-white/5 bg-white/[0.02] text-center">
+                        <img src="https://z-cdn-media.chatglm.cn/files/fa3d8afe-dd20-4909-8e6d-e099a023c8cb.png?auth_key=1875854641-fc73938f56da422d84761a4700b68db5-0-5911ea74b7e9fcfb734cd8e427ab2c16" alt="DevCode Logo" class="w-20 h-20 object-contain mx-auto mb-3">
+                        <div class="font-display font-semibold text-xs tracking-widest text-white/70">DEVCODE</div>
+                        <div class="text-[9px] font-mono uppercase tracking-[0.25em] text-[#4F8CFF]/40 mt-0.5">Web Solutions & Systems</div>
+                        <div class="flex items-center justify-center gap-2 mt-3">
+                            <a href="#" class="w-8 h-8 rounded-md bg-white/5 flex items-center justify-center text-gray-600 hover:text-[#4F8CFF] transition-colors"><iconify-icon icon="lucide:github" width="14"></iconify-icon></a>
+                            <a href="#" class="w-8 h-8 rounded-md bg-white/5 flex items-center justify-center text-gray-600 hover:text-[#4F8CFF] transition-colors"><iconify-icon icon="lucide:linkedin" width="14"></iconify-icon></a>
+                            <a href="#" class="w-8 h-8 rounded-md bg-white/5 flex items-center justify-center text-gray-600 hover:text-[#4F8CFF] transition-colors"><iconify-icon icon="lucide:twitter" width="14"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Form -->
+                <div class="lg:col-span-8 reveal-right">
+                    <div class="p-7 md:p-8 rounded-2xl border border-white/5 bg-white/[0.02]">
+                        <h3 class="font-display font-semibold text-lg mb-6">Send a Message</h3>
+                        <form id="contactForm" class="space-y-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-2 block">Name</label>
+                                    <input type="text" required placeholder="John Doe" class="form-input w-full bg-white/[0.03] border border-white/5 rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-700 focus:outline-none focus:border-[#4F8CFF]/30 transition-colors">
+                                </div>
+                                <div>
+                                    <label class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-2 block">Email</label>
+                                    <input type="email" required placeholder="john@example.com" class="form-input w-full bg-white/[0.03] border border-white/5 rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-700 focus:outline-none focus:border-[#4F8CFF]/30 transition-colors">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-2 block">Subject</label>
+                                <input type="text" required placeholder="Project Inquiry" class="form-input w-full bg-white/[0.03] border border-white/5 rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-700 focus:outline-none focus:border-[#4F8CFF]/30 transition-colors">
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-2 block">Message</label>
+                                <textarea rows="5" required placeholder="Tell me about your project..." class="form-input w-full bg-white/[0.03] border border-white/5 rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-700 focus:outline-none focus:border-[#4F8CFF]/30 transition-colors resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary w-full inline-flex items-center justify-center gap-2 text-sm font-semibold px-8 py-3.5 rounded-lg transition-all duration-300">
+                                Send Message
+                                <iconify-icon icon="lucide:send" width="15"></iconify-icon>
+                            </button>
+                            <div id="formMessage" class="hidden text-center text-sm font-medium py-3 rounded-lg"></div>
+                        </form>
+                    </div>
+
+                    <!-- Testimonial -->
+                    <div class="mt-8 p-6 rounded-xl border border-white/5 bg-white/[0.02]">
+                        <div class="flex items-center gap-1 mb-3">
+                            <iconify-icon icon="lucide:star" width="13" class="text-amber-400"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="13" class="text-amber-400"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="13" class="text-amber-400"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="13" class="text-amber-400"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="13" class="text-amber-400"></iconify-icon>
+                        </div>
+                        <p class="text-sm font-light text-gray-400 leading-relaxed mb-4">
+                            "Well-designed portfolio with clear presentation of skills. Each project highlights both creativity and technical ability."
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-full overflow-hidden border border-white/10">
+                                <img src="https://picsum.photos/seed/devcode-test/80/80.jpg" alt="Client" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <div class="text-xs font-medium text-gray-300">Ahmed Hassan</div>
+                                <div class="text-[10px] font-mono text-gray-600">Product Designer</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5 py-10">
+        <div class="max-w-[1300px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded overflow-hidden"><img src="https://z-cdn-media.chatglm.cn/files/fa3d8afe-dd20-4909-8e6d-e099a023c8cb.png?auth_key=1875854641-fc73938f56da422d84761a4700b68db5-0-5911ea74b7e9fcfb734cd8e427ab2c16" alt="DevCode" class="w-full h-full object-cover"></div>
+                <span class="text-xs text-gray-600 font-mono">© 2025 DevCode. All rights reserved.</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="text-xs text-gray-500 hover:text-white transition-colors">Home</a>
+                <a href="skills.html" class="text-xs text-gray-500 hover:text-white transition-colors">Skills</a>
+                <a href="projects.html" class="text-xs text-gray-500 hover:text-white transition-colors">Projects</a>
+                <a href="contact.html" class="text-xs text-gray-500 hover:text-white transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn"><iconify-icon icon="lucide:chevron-up" width="18"></iconify-icon></button>
+    <script src="script.js"></script>
+</body>
+</html>
