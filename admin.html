@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — DEV CORE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: { extend: { fontFamily: { display: ['Inter Tight','sans-serif'], sans: ['Inter','sans-serif'], mono: ['JetBrains Mono','monospace'] } } }
+        }
+    </script>
+    <style>
+        *{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.06) transparent}
+        ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.06);border-radius:3px}
+        .sidebar-link{transition:all .15s ease}.sidebar-link:hover{background:rgba(255,255,255,.04)}
+        .sidebar-link.active{background:rgba(79,140,255,.08);border-left-color:#4F8CFF;color:#fff}
+        .stat-card{position:relative;overflow:hidden}
+        .stat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(79,140,255,.3),transparent)}
+        .msg-row{transition:background .15s ease}.msg-row:hover{background:rgba(255,255,255,.02)}
+        .project-card-admin{transition:all .25s ease}.project-card-admin:hover{border-color:rgba(79,140,255,.15);transform:translateY(-1px)}
+        .modal-bg{backdrop-filter:blur(8px);background:rgba(0,0,0,.7)}
+        .toast{animation:toastIn .3s ease forwards}@keyframes toastIn{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:translateX(0)}}
+        .toast-out{animation:toastOut .25s ease forwards}@keyframes toastOut{to{opacity:0;transform:translateX(100%)}}
+        .skeleton{background:linear-gradient(90deg,rgba(255,255,255,.02) 25%,rgba(255,255,255,.05) 50%,rgba(255,255,255,.02) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite}
+        @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+        input:focus,textarea:focus,select:focus{outline:none;border-color:rgba(79,140,255,.4)!important}
+        .toggle-sw{width:40px;height:22px;border-radius:11px;background:rgba(255,255,255,.08);position:relative;cursor:pointer;transition:background .3s}
+        .toggle-sw.on{background:#4F8CFF}.toggle-sw::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .3s}
+        .toggle-sw.on::after{transform:translateX(18px)}
+        .fade-in{animation:fadeIn .3s ease forwards}@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        .slide-up{animation:slideUp .35s ease forwards}@keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes scaleIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+    </style>
+</head>
+<body class="bg-[#050505] text-white font-sans antialiased">
+
+    <!-- ===== LOADING ===== -->
+    <div id="loadingScreen" class="min-h-screen flex items-center justify-center px-5">
+        <div class="text-center max-w-sm">
+            <div class="w-14 h-14 rounded-xl overflow-hidden border border-white/10 mx-auto mb-5">
+                <img src="https://z-cdn-media.chatglm.cn/files/fa3d8afe-dd20-4909-8e6d-e099a023c8cb.png?auth_key=1875854641-fc73938f56da422d84761a4700b68db5-0-5911ea74b7e9fcfb734cd8e427ab2c16" alt="DevCore" class="w-full h-full object-cover">
+            </div>
+            <div class="flex items-center gap-2 justify-center mb-4">
+                <svg class="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4F8CFF" stroke-width="2"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg>
+                <span class="text-xs font-mono text-gray-400" id="loadingText">Loading Firebase...</span>
+            </div>
+            <div id="loadingSteps" class="text-left text-[10px] font-mono text-gray-700 space-y-1"></div>
+            <!-- Skip button appears after 8 seconds -->
+            <button id="skipBtn" onclick="skipToLogin()" class="hidden mt-6 text-[11px] font-mono text-gray-500 hover:text-white underline transition-colors">
+                Having trouble? Click here to skip
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== LOGIN ===== -->
+    <div id="loginScreen" class="min-h-screen flex items-center justify-center px-5 relative" style="display:none">
+        <div class="absolute top-1/3 left-1/4 w-80 h-80 bg-[#4F8CFF]/[0.03] rounded-full blur-3xl pointer-events-none"></div>
+        <div class="w-full max-w-sm relative z-10 fade-in">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 rounded-2xl overflow-hidden border border-white/10 mx-auto mb-4">
+                    <img src="https://z-cdn-media.chatglm.cn/files/fa3d8afe-dd20-4909-8e6d-e099a023c8cb.png?auth_key=1875854641-fc73938f56da422d84761a4700b68db5-0-5911ea74b7e9fcfb734cd8e427ab2c16" alt="DevCore" class="w-full h-full object-cover">
+                </div>
+                <h1 class="font-display font-semibold text-xl tracking-tight">Admin Panel</h1>
+                <p class="text-[10px] text-gray-600 font-mono mt-1 uppercase tracking-widest">Dev Core — Secure Access</p>
+            </div>
+            <div id="firebaseWarning" class="hidden mb-4 p-3 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[11px] font-mono text-center">
+                ⚠ Running in offline mode — Firebase not connected
+            </div>
+            <div class="p-6 rounded-2xl border border-white/5 bg-white/[0.02]">
+                <div id="loginError" class="hidden mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-medium"></div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-2 block">Email</label>
+                        <input id="loginEmail" type="email" placeholder="admin@devcore.com" class="w-full bg-white/[0.03] border border-white/[0.06] rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-700 transition-colors">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-2 block">Password</label>
+                        <input id="loginPassword" type="password" placeholder="••••••••" class="w-full bg-white/[0.03] border border-white/[0.06] rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-700 transition-colors">
+                    </div>
+                    <button id="loginBtn" onclick="handleLogin()" class="w-full bg-[#4F8CFF] hover:bg-[#3d7bef] text-white text-sm font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2">
+                        Sign In <iconify-icon icon="lucide:arrow-right" width="15"></iconify-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ADMIN PANEL ===== -->
+    <div id="adminPanel" style="display:none" class="min-h-screen">
+        <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden" onclick="toggleSidebar()"></div>
+        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 w-[250px] bg-[#0a0a0a] border-r border-white/5 z-50 flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+            <div class="px-5 py-5 border-b border-white/5">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg overflow-hidden border border-white/10"><img src="https://z-cdn-media.chatglm.cn/files/fa3d8afe-dd20-4909-8e6d-e099a023c8cb.png?auth_key=1875854641-fc73938f56da422d84761a4700b68db5-0-5911ea74b7e9fcfb734cd8e427ab2c16" alt="DevCore" class="w-full h-full object-cover"></div>
+                    <div><div class="text-sm font-display font-semibold tracking-wide leading-none">DEV CORE</div><div class="text-[9px] font-mono uppercase tracking-[0.2em] text-[#4F8CFF]/50 leading-none mt-0.5">Admin</div></div>
+                </a>
+            </div>
+            <nav class="flex-1 px-3 py-4 space-y-1">
+                <button onclick="showPage('dashboard')" data-page="dashboard" class="sidebar-link active w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-400 border-l-2 border-transparent"><iconify-icon icon="lucide:layout-dashboard" width="18"></iconify-icon> Dashboard</button>
+                <button onclick="showPage('messages')" data-page="messages" class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-400 border-l-2 border-transparent"><iconify-icon icon="lucide:mail" width="18"></iconify-icon> Messages <span id="unreadBadge" class="hidden ml-auto text-[10px] font-mono font-bold bg-[#4F8CFF] text-white min-w-[20px] text-center px-1.5 py-0.5 rounded-full">0</span></button>
+                <button onclick="showPage('projects')" data-page="projects" class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-400 border-l-2 border-transparent"><iconify-icon icon="lucide:folder-open" width="18"></iconify-icon> Projects</button>
+            </nav>
+            <div class="px-3 py-4 border-t border-white/5">
+                <button onclick="handleLogout()" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-500 hover:text-red-400 hover:bg-red-500/5 transition-all"><iconify-icon icon="lucide:log-out" width="18"></iconify-icon> Sign Out</button>
+            </div>
+        </aside>
+        <main class="lg:ml-[250px] min-h-screen">
+            <header class="sticky top-0 z-30 bg-[#050505]/80 backdrop-blur-xl border-b border-white/5 px-5 md:px-8 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleSidebar()" class="lg:hidden w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400"><iconify-icon icon="lucide:menu" width="18"></iconify-icon></button>
+                    <h2 id="pageTitle" class="font-display font-semibold text-base">Dashboard</h2>
+                </div>
+                <div id="userEmail" class="text-[11px] font-mono text-gray-600 hidden sm:block"></div>
+            </header>
+            <div class="p-5 md:p-8">
+                <div id="page-dashboard" class="page-section">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                        <div class="stat-card p-5 rounded-xl border border-white/5 bg-white/[0.02] slide-up"><div class="flex items-center gap-2 mb-3"><iconify-icon icon="lucide:mail" width="16" class="text-[#4F8CFF]"></iconify-icon><span class="text-[10px] font-mono text-gray-600 uppercase tracking-wider">Messages</span></div><div id="statMessages" class="text-2xl font-display font-bold">0</div></div>
+                        <div class="stat-card p-5 rounded-xl border border-white/5 bg-white/[0.02] slide-up" style="animation-delay:.05s"><div class="flex items-center gap-2 mb-3"><iconify-icon icon="lucide:bell" width="16" class="text-amber-400"></iconify-icon><span class="text-[10px] font-mono text-gray-600 uppercase tracking-wider">Unread</span></div><div id="statUnread" class="text-2xl font-display font-bold text-amber-400">0</div></div>
+                        <div class="stat-card p-5 rounded-xl border border-white/5 bg-white/[0.02] slide-up" style="animation-delay:.1s"><div class="flex items-center gap-2 mb-3"><iconify-icon icon="lucide:folder" width="16" class="text-emerald-400"></iconify-icon><span class="text-[10px] font-mono text-gray-600 uppercase tracking-wider">Projects</span></div><div id="statProjects" class="text-2xl font-display font-bold text-emerald-400">0</div></div>
+                        <div class="stat-card p-5 rounded-xl border border-white/5 bg-white/[0.02] slide-up" style="animation-delay:.15s"><div class="flex items-center gap-2 mb-3"><iconify-icon icon="lucide:calendar" width="16" class="text-purple-400"></iconify-icon><span class="text-[10px] font-mono text-gray-600 uppercase tracking-wider">This Month</span></div><div id="statMonth" class="text-2xl font-display font-bold text-purple-400">0</div></div>
+                    </div>
+                    <div class="p-6 rounded-xl border border-white/5 bg-white/[0.02]">
+                        <h3 class="font-display font-semibold text-sm mb-4 flex items-center gap-2"><iconify-icon icon="lucide:clock" width="15" class="text-gray-500"></iconify-icon> Recent Messages</h3>
+                        <div id="recentMessages"><p class="text-xs text-gray-600 text-center py-8 font-mono">No messages yet</p></div>
+                    </div>
+                </div>
+                <div id="page-messages" class="page-section" style="display:none">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-6">
+                        <div class="relative flex-1 max-w-sm w-full"><iconify-icon icon="lucide:search" width="14" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600"></iconify-icon><input id="msgSearch" type="text" placeholder="Search messages..." class="w-full bg-white/[0.03] border border-white/[0.06] rounded-lg pl-9 pr-4 py-2.5 text-sm text-white placeholder:text-gray-600 transition-colors"></div>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="filterMsgs('all')" class="msg-filter text-[11px] font-mono px-3 py-1.5 rounded-md bg-white/[0.03] border border-white/[0.06] text-gray-400 hover:text-white transition-all" data-f="all">All</button>
+                            <button onclick="filterMsgs('unread')" class="msg-filter text-[11px] font-mono px-3 py-1.5 rounded-md bg-white/[0.03] border border-white/[0.06] text-gray-400 hover:text-white transition-all" data-f="unread">Unread</button>
+                            <button onclick="filterMsgs('read')" class="msg-filter text-[11px] font-mono px-3 py-1.5 rounded-md bg-white/[0.03] border border-white/[0.06] text-gray-400 hover:text-white transition-all" data-f="read">Read</button>
+                        </div>
+                        <button onclick="deleteAllRead()" class="text-[11px] font-mono px-3 py-1.5 rounded-md bg-red-500/5 border border-red-500/15 text-red-400 hover:bg-red-500/10 transition-all ml-auto"><iconify-icon icon="lucide:trash-2" width="12" class="mr-1"></iconify-icon>Delete Read</button>
+                    </div>
+                    <div id="messagesList" class="space-y-2"></div>
+                    <div id="noMessages" class="hidden text-center py-20"><iconify-icon icon="lucide:inbox" width="40" class="text-gray-700 mb-3"></iconify-icon><p class="text-gray-600 text-sm font-mono">No messages found</p></div>
+                </div>
+                <div id="page-projects" class="page-section" style="display:none">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-6">
+                        <div class="relative flex-1 max-w-sm w-full"><iconify-icon icon="lucide:search" width="14" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600"></iconify-icon><input id="projSearch" type="text" placeholder="Search projects..." class="w-full bg-white/[0.03] border border-white/[0.06] rounded-lg pl-9 pr-4 py-2.5 text-sm text-white placeholder:text-gray-600 transition-colors"></div>
+                        <button onclick="openProjectModal()" class="inline-flex items-center gap-2 bg-[#4F8CFF] hover:bg-[#3d7bef] text-white text-xs font-semibold px-4 py-2.5 rounded-lg transition-all"><iconify-icon icon="lucide:plus" width="14"></iconify-icon> Add Project</button>
+                    </div>
+                    <div id="projectsList" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+                    <div id="noProjects" class="hidden text-center py-20"><iconify-icon icon="lucide:folder-open" width="40" class="text-gray-700 mb-3"></iconify-icon><p class="text-gray-600 text-sm font-mono">No projects yet</p></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- PROJECT MODAL -->
+    <div id="projectModal" style="display:none" class="fixed inset-0 z-[60]">
+        <div class="modal-bg absolute inset-0" onclick="closeProjectModal()"></div>
+        <div class="relative z-10 flex items-center justify-center min-h-screen p-5">
+            <div class="w-full max-w-lg bg-[#0a0a0a] border border-white/[0.06] rounded-2xl p-6 max-h-[90vh] overflow-y-auto slide-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 id="modalTitle" class="font-display font-semibold text-base">Add Project</h3>
+                    <button onclick="closeProjectModal()" class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gray-500 hover:text-white transition-colors"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button>
+                </div>
+                <form id="projectForm" class="space-y-4">
+                    <input type="hidden" id="projId">
+                    <div><label class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-1.5 block">Title *</label><input id="projTitle" type="text" required placeholder="Project Name" class="w-full bg-white/[0.03] border border-white/[0.06] rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-gray-700 transition-colors"></div>
+                    <div><label class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-1.5 block">Description *</label><textarea id="projDesc" rows="3" required placeholder="Brief description..." class="w-full bg-white/[0.03] border border-white/[0.06] rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-gray-700 transition-colors resize-none"></textarea></div>
+                    <div><label class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-1.5 block">Image URL *</label><input id="projImage" type="url" required placeholder="https://..." class="w-full bg-white/[0.03] border border-white/[0.06] rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-gray-700 transition-colors" oninput="previewImage(this.value)"><div id="imgPreview" style="display:none" class="mt-2"><img id="imgPreviewSrc" src="" alt="Preview" class="w-full h-32 object-cover rounded-lg border border-white/5"></div></div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div><label class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-1.5 block">Category</label><select id="projCategory" class="w-full bg-white/[0.03] border border-white/[0.06] rounded-lg px-4 py-2.5 text-sm text-white transition-colors appearance-none"><option value="web" class="bg-[#0a0a0a]">Web App</option><option value="mobile" class="bg-[#0a0a0a]">Mobile</option></select></div>
+                        <div><label class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-1.5 block">Order</label><input id="projOrder" type="number" value="1" min="0" class="w-full bg-white/[0.03] border border-white/[0.06] rounded-lg px-4 py-2.5 text-sm text-white transition-colors"></div>
+                    </div>
+                    <div><label class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-1.5 block">Tags (comma separated)</label><input id="projTags" type="text" placeholder="React, Node.js, MongoDB" class="w-full bg-white/[0.03] border border-white/[0.06] rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-gray-700 transition-colors"></div>
+                    <div><label class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-1.5 block">Live URL</label><input id="projLive" type="url" placeholder="https://..." class="w-full bg-white/[0.03] border border-white/[0.06] rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-gray-700 transition-colors"></div>
+                    <div><label class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600 mb-1.5 block">GitHub URL</label><input id="projGithub" type="url" placeholder="https://github.com/..." class="w-full bg-white/[0.03] border border-white/[0.06] rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-gray-700 transition-colors"></div>
+                    <div class="flex items-center justify-between py-1"><span class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600">Visible</span><div id="projVisible" class="toggle-sw on" onclick="this.classList.toggle('on')"></div></div>
+                    <div class="flex items-center justify-between py-1"><span class="text-[10px] font-mono uppercase tracking-[0.15em] text-gray-600">Featured</span><div id="projFeatured" class="toggle-sw" onclick="this.classList.toggle('on')"></div></div>
+                    <button type="submit" class="w-full bg-[#4F8CFF] hover:bg-[#3d7bef] text-white text-sm font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2"><iconify-icon icon="lucide:save" width="15"></iconify-icon> Save Project</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MESSAGE MODAL -->
+    <div id="msgModal" style="display:none" class="fixed inset-0 z-[60]">
+        <div class="modal-bg absolute inset-0" onclick="closeMsgModal()"></div>
+        <div class="relative z-10 flex items-center justify-center min-h-screen p-5">
+            <div class="w-full max-w-lg bg-[#0a0a0a] border border-white/[0.06] rounded-2xl p-6 slide-up">
+                <div class="flex items-center justify-between mb-5"><h3 class="font-display font-semibold text-base">Message Details</h3><button onclick="closeMsgModal()" class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gray-500 hover:text-white transition-colors"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div>
+                <div id="msgModalContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIRM MODAL -->
+    <div id="confirmModal" style="display:none" class="fixed inset-0 z-[70]">
+        <div class="modal-bg absolute inset-0" onclick="closeConfirm()"></div>
+        <div class="relative z-10 flex items-center justify-center min-h-screen p-5">
+            <div class="w-full max-w-sm bg-[#0a0a0a] border border-white/[0.06] rounded-2xl p-6 text-center" style="animation:scaleIn .2s ease forwards">
+                <div class="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4"><iconify-icon icon="lucide:alert-triangle" width="22" class="text-red-400"></iconify-icon></div>
+                <h3 class="font-display font-semibold text-sm mb-2" id="confirmTitle">Are you sure?</h3>
+                <p class="text-xs text-gray-500 mb-5" id="confirmText">This cannot be undone.</p>
+                <div class="flex gap-3"><button onclick="closeConfirm()" class="flex-1 py-2.5 rounded-lg bg-white/5 text-sm font-medium text-gray-400 hover:text-white transition-colors">Cancel</button><button id="confirmBtn" class="flex-1 py-2.5 rounded-lg bg-red-500/20 text-sm font-semibold text-red-400 hover:bg-red-500/30 transition-colors">Delete</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="fixed top-5 right-5 z-[80] space-y-2"></div>
+
+    <!-- ===== FIREBASE — LOADED LAST ===== -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script>
+        // Check SDK 1 loaded
+        window._fbCheck = window._fbCheck || [];
+        window._fbCheck.push('app-sdk: ' + (typeof firebase !== 'undefined' ? 'OK' : 'FAIL'));
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script>
+        window._fbCheck.push('auth-sdk: ' + (typeof firebase.auth !== 'undefined' ? 'OK' : 'FAIL'));
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script>
+        window._fbCheck.push('fs-sdk: ' + (typeof firebase.firestore !== 'undefined' ? 'OK' : 'FAIL'));
+    </script>
+    <script src="firebase-config.js"></script>
+    <script>
+        window._fbCheck.push('config: ' + (typeof firebaseConfig !== 'undefined' ? 'OK' : 'FAIL'));
+        window._fbCheck.push('init: ' + (typeof db !== 'undefined' ? 'OK' : 'FAIL'));
+    </script>
+
+    <script>
+    // ===== SHOW LOADING STEPS =====
+    var stepsEl = document.getElementById('loadingSteps');
+    if (stepsEl && window._fbCheck) {
+        stepsEl.innerHTML = window._fbCheck.map(function(s) {
+            var ok = s.indexOf('OK') > -1;
+            return '<div class="flex items-center gap-2">' +
+                '<span class="w-1.5 h-1.5 rounded-full ' + (ok ? 'bg-emerald-400' : 'bg-red-400') + '"></span>' +
+                '<span class="' + (ok ? 'text-gray-500' : 'text-red-400') + '">' + s + '</span></div>';
+        }).join('');
+    }
+
+    // ===== SKIP BUTTON AFTER 6 SECONDS =====
+    setTimeout(function() {
+        var btn = document.getElementById('skipBtn');
+        if (btn) btn.style.display = '';
+    }, 6000);
+
+    // ===== FORCE SKIP AFTER 12 SECONDS =====
+    setTimeout(function() {
+        if (document.getElementById('loadingScreen').style.display !== 'none') {
+            skipToLogin();
+        }
+    }, 12000);
+
+    function skipToLogin() {
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('loginScreen').style.display = '';
+        document.getElementById('firebaseWarning').style.display = '';
+        window._firebaseOK = false;
+    }
+
+    // ===== INIT =====
+    var allMessages = [];
+    var allProjects = [];
+    var currentMsgFilter = 'all';
+    var msgUnsub = null;
+    var projUnsub = null;
+    window._firebaseOK = false;
+
+    try {
+        if (typeof firebase === 'undefined') throw new Error('Firebase SDK not loaded');
+        if (typeof firebaseConfig === 'undefined' || !firebaseConfig.apiKey) throw new Error('firebase-config.js missing or empty');
+        if (typeof db === 'undefined') throw new Error('Firebase init failed — check firebase-config.js');
+
+        window._firebaseOK = true;
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('loginScreen').style.display = '';
+        initApp();
+
+    } catch(err) {
+        console.error('Init error:', err);
+        // Show what went wrong in loading steps
+        if (stepsEl) {
+            stepsEl.innerHTML += '<div class="mt-3 p-2 rounded bg-red-500/10 border border-red-500/20 text-red-400 text-[10px]">Error: ' + err.message + '</div>';
+        }
+        // Show skip button immediately
+        document.getElementById('skipBtn').style.display = '';
+    }
+
+    function initApp() {
+        document.getElementById('loginPassword').addEventListener('keydown', function(e) { if (e.key === 'Enter') handleLogin(); });
+        document.getElementById('loginEmail').addEventListener('keydown', function(e) { if (e.key === 'Enter') handleLogin(); });
+        document.getElementById('msgSearch').addEventListener('input', renderMessages);
+        document.getElementById('projSearch').addEventListener('input', renderProjects);
+        document.getElementById('projectForm').addEventListener('submit', function(e) { e.preventDefault(); saveProject(this); });
+
+        auth.onAuthStateChanged(function(user) {
+            if (user) {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('adminPanel').style.display = '';
+                document.getElementById('userEmail').textContent = user.email;
+                startListeners();
+            } else {
+                document.getElementById('loginScreen').style.display = '';
+                document.getElementById('adminPanel').style.display = 'none';
+                stopListeners();
+            }
+        });
+    }
+
+    // ===== AUTH =====
+    function handleLogin() {
+        if (!window._firebaseOK) { showLoginError('Firebase not connected. Check firebase-config.js'); return; }
+        var email = document.getElementById('loginEmail').value.trim();
+        var pass = document.getElementById('loginPassword').value;
+        var errEl = document.getElementById('loginError');
+        var btn = document.getElementById('loginBtn');
+        if (!email || !pass) { showLoginError('Please fill in all fields'); return; }
+        errEl.style.display = 'none';
+        btn.disabled = true;
+        btn.innerHTML = '<svg class="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg> Signing in...';
+        auth.signInWithEmailAndPassword(email, pass).catch(function(err) {
+            var m = {'auth/invalid-credential':'Invalid email or password','auth/user-not-found':'User not found','auth/too-many-requests':'Too many attempts. Try later.'};
+            showLoginError(m[err.code] || err.message);
+        }).finally(function() { btn.disabled = false; btn.innerHTML = 'Sign In <iconify-icon icon="lucide:arrow-right" width="15"></iconify-icon>'; });
+    }
+    function showLoginError(msg) { var e = document.getElementById('loginError'); e.textContent = msg; e.style.display = ''; }
+    function handleLogout() { if (window._firebaseOK) auth.signOut(); document.getElementById('loginEmail').value = ''; document.getElementById('loginPassword').value = ''; }
+
+    // ===== LISTENERS =====
+    function startListeners() {
+        if (!window._firebaseOK) return;
+        msgUnsub = db.collection('messages').orderBy('createdAt','desc').onSnapshot(function(snap) {
+            allMessages = snap.docs.map(function(d) { return Object.assign({id:d.id}, d.data()); });
+            updateDashboard(); renderMessages();
+        });
+        projUnsub = db.collection('projects').orderBy('order','asc').onSnapshot(function(snap) {
+            allProjects = snap.docs.map(function(d) { return Object.assign({id:d.id}, d.data()); });
+            updateDashboard(); renderProjects();
+        });
+    }
+    function stopListeners() { if(msgUnsub){msgUnsub();msgUnsub=null;} if(projUnsub){projUnsub();projUnsub=null;} }
+
+    // ===== NAV =====
+    function showPage(p) {
+        document.querySelectorAll('.page-section').forEach(function(s){s.style.display='none';});
+        var t=document.getElementById('page-'+p); t.style.display=''; t.classList.add('fade-in');
+        document.querySelectorAll('.sidebar-link').forEach(function(l){l.classList.remove('active');});
+        document.querySelector('.sidebar-link[data-page="'+p+'"]').classList.add('active');
+        document.getElementById('pageTitle').textContent={dashboard:'Dashboard',messages:'Messages',projects:'Projects'}[p];
+        if(window.innerWidth<1024) toggleSidebar();
+    }
+    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('-translate-x-full'); document.getElementById('sidebarOverlay').classList.toggle('hidden'); }
+
+    // ===== DASHBOARD =====
+    function updateDashboard() {
+        var total=allMessages.length, unread=allMessages.filter(function(m){return !m.read;}).length, projs=allProjects.length, now=new Date();
+        var thisMonth=allMessages.filter(function(m){if(!m.createdAt)return false;var d=m.createdAt.toDate?m.createdAt.toDate():new Date(m.createdAt);return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();}).length;
+        document.getElementById('statMessages').textContent=total;
+        document.getElementById('statUnread').textContent=unread;
+        document.getElementById('statProjects').textContent=projs;
+        document.getElementById('statMonth').textContent=thisMonth;
+        var badge=document.getElementById('unreadBadge');
+        if(unread>0){badge.style.display='';badge.textContent=unread;}else badge.style.display='none';
+        var recent=document.getElementById('recentMessages');
+        if(allMessages.length===0){recent.innerHTML='<p class="text-xs text-gray-600 text-center py-8 font-mono">No messages yet</p>';return;}
+        recent.innerHTML=allMessages.slice(0,5).map(function(m){return '<div class="flex items-center gap-3 p-3 rounded-lg '+(m.read?'':'bg-[#4F8CFF]/[0.03]')+' hover:bg-white/[0.02] transition-colors cursor-pointer" onclick="viewMessage(\''+m.id+'\')"><div class="w-8 h-8 rounded-full '+(m.read?'bg-white/5':'bg-[#4F8CFF]/10')+' flex items-center justify-center flex-shrink-0"><iconify-icon icon="lucide:user" width="14" class="'+(m.read?'text-gray-600':'text-[#4F8CFF]')+'"></iconify-icon></div><div class="flex-1 min-w-0"><div class="flex items-center gap-2"><span class="text-xs font-medium '+(m.read?'text-gray-500':'text-gray-300')+' truncate">'+esc(m.name)+'</span>'+(!m.read?'<span class="w-1.5 h-1.5 rounded-full bg-[#4F8CFF] flex-shrink-0"></span>':'')+'</div><span class="text-[11px] text-gray-600 truncate block">'+esc(m.subject)+'</span></div><span class="text-[10px] font-mono text-gray-700 flex-shrink-0">'+fmtDate(m.createdAt)+'</span></div>';}).join('');
+    }
+
+    // ===== MESSAGES =====
+    function renderMessages() {
+        var search=(document.getElementById('msgSearch').value||'').toLowerCase(), filtered=allMessages;
+        if(currentMsgFilter==='unread') filtered=filtered.filter(function(m){return !m.read;});
+        if(currentMsgFilter==='read') filtered=filtered.filter(function(m){return m.read;});
+        if(search) filtered=filtered.filter(function(m){return m.name.toLowerCase().indexOf(search)>-1||m.email.toLowerCase().indexOf(search)>-1||m.subject.toLowerCase().indexOf(search)>-1;});
+        var list=document.getElementById('messagesList'), empty=document.getElementById('noMessages');
+        if(filtered.length===0){list.innerHTML='';empty.style.display='';return;}
+        empty.style.display='none';
+        list.innerHTML=filtered.map(function(m){return '<div class="msg-row flex items-center gap-3 p-4 rounded-xl border '+(m.read?'border-white/[0.04]':'border-[#4F8CFF]/10 bg-[#4F8CFF]/[0.02]')+' cursor-pointer" onclick="viewMessage(\''+m.id+'\')"><div class="w-9 h-9 rounded-full '+(m.read?'bg-white/5':'bg-[#4F8CFF]/10')+' flex items-center justify-center flex-shrink-0"><iconify-icon icon="'+(m.read?'lucide:mail-open':'lucide:mail')+'" width="15" class="'+(m.read?'text-gray-600':'text-[#4F8CFF]')+'"></iconify-icon></div><div class="flex-1 min-w-0"><div class="flex items-center gap-2 mb-0.5"><span class="text-sm font-medium '+(m.read?'text-gray-500':'text-gray-200')+' truncate">'+esc(m.name)+'</span><span class="text-[10px] font-mono text-gray-700 flex-shrink-0">'+esc(m.email)+'</span>'+(!m.read?'<span class="w-1.5 h-1.5 rounded-full bg-[#4F8CFF] flex-shrink-0"></span>':'')+'</div><span class="text-xs text-gray-600 truncate block">'+esc(m.subject)+'</span></div><span class="text-[10px] font-mono text-gray-700 flex-shrink-0 hidden sm:block">'+fmtDate(m.createdAt)+'</span><div class="flex items-center gap-1 flex-shrink-0" onclick="event.stopPropagation()"><button onclick="toggleRead(\''+m.id+'\','+!m.read+')" class="w-7 h-7 rounded-md bg-white/5 flex items-center justify-center text-gray-600 hover:text-[#4F8CFF] transition-colors"><iconify-icon icon="'+(m.read?'lucide:eye-off':'lucide:eye')+'" width="13"></iconify-icon></button><button onclick="confirmDelete(\'message\',\''+m.id+'\')" class="w-7 h-7 rounded-md bg-white/5 flex items-center justify-center text-gray-600 hover:text-red-400 transition-colors"><iconify-icon icon="lucide:trash-2" width="13"></iconify-icon></button></div></div>';}).join('');
+    }
+    function filterMsgs(f) {
+        currentMsgFilter=f;
+        document.querySelectorAll('.msg-filter').forEach(function(b){if(b.dataset.f===f){b.style.background='rgba(79,140,255,0.1)';b.style.borderColor='rgba(79,140,255,0.2)';b.style.color='#4F8CFF';}else{b.style.background='';b.style.borderColor='';b.style.color='';}});
+        renderMessages();
+    }
+    function toggleRead(id,read) { if(!window._firebaseOK)return; db.collection('messages').doc(id).update({read:read}).then(function(){toast(read?'Marked as read':'Marked as unread','info');}); }
+    function viewMessage(id) {
+        var m=allMessages.find(function(x){return x.id===id;}); if(!m)return;
+        if(!m.read && window._firebaseOK) db.collection('messages').doc(id).update({read:true});
+        document.getElementById('msgModalContent').innerHTML='<div class="space-y-4"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-[#4F8CFF]/10 flex items-center justify-center"><iconify-icon icon="lucide:user" width="18" class="text-[#4F8CFF]"></iconify-icon></div><div><div class="text-sm font-medium text-gray-200">'+esc(m.name)+'</div><div class="text-[11px] font-mono text-gray-600">'+esc(m.email)+'</div></div></div><div class="h-px bg-white/5"></div><div><div class="text-[10px] font-mono text-gray-600 mb-1">SUBJECT</div><div class="text-sm text-gray-300">'+esc(m.subject)+'</div></div><div><div class="text-[10px] font-mono text-gray-600 mb-1">MESSAGE</div><div class="text-sm text-gray-400 leading-relaxed whitespace-pre-wrap">'+esc(m.message)+'</div></div><div class="text-[10px] font-mono text-gray-700">'+fmtDateFull(m.createdAt)+'</div><div class="flex gap-2 pt-2"><a href="mailto:'+esc(m.email)+'" class="flex-1 py-2.5 rounded-lg bg-[#4F8CFF]/10 text-xs font-semibold text-[#4F8CFF] hover:bg-[#4F8CFF]/20 transition-colors text-center"><iconify-icon icon="lucide:reply" width="13" class="mr-1"></iconify-icon>Reply</a></div></div>';
+        document.getElementById('msgModal').style.display='';
+    }
+    function closeMsgModal() { document.getElementById('msgModal').style.display='none'; }
+    function deleteAllRead() {
+        if(!window._firebaseOK)return;
+        var ids=allMessages.filter(function(m){return m.read;}).map(function(m){return m.id;});
+        if(ids.length===0){toast('No read messages','info');return;}
+        showConfirm('Delete '+ids.length+' message(s)?','',function(){var b=db.batch();ids.forEach(function(id){b.delete(db.collection('messages').doc(id));});b.commit().then(function(){toast(ids.length+' deleted','success');});});
+    }
+
+    // ===== PROJECTS =====
+    function renderProjects() {
+        var search=(document.getElementById('projSearch').value||'').toLowerCase(), filtered=allProjects;
+        if(search) filtered=filtered.filter(function(p){return p.title.toLowerCase().indexOf(search)>-1;});
+        var list=document.getElementById('projectsList'), empty=document.getElementById('noProjects');
+        if(filtered.length===0){list.innerHTML='';empty.style.display='';return;}
+        empty.style.display='none';
+        list.innerHTML=filtered.map(function(p){
+            var cc=p.category==='mobile'?'bg-purple-500/15 text-purple-400 border-purple-500/20':'bg-[#4F8CFF]/15 text-[#4F8CFF] border-[#4F8CFF]/20';
+            var tags=(p.tags||[]).slice(0,4).map(function(t){return '<span class="text-[9px] font-mono bg-white/5 rounded px-1.5 py-0.5 text-gray-500">'+esc(t)+'</span>';}).join('');
+            return '<div class="project-card-admin rounded-xl border border-white/[0.04] bg-white/[0.02] overflow-hidden '+(!p.visible?'opacity-50':'')+'"><div class="aspect-video overflow-hidden relative"><img src="'+esc(p.image)+'" alt="'+esc(p.title)+'" class="w-full h-full object-cover" onerror="this.src=\'https://picsum.photos/seed/fallback/600/340.jpg\'"><div class="absolute top-2 left-2 flex items-center gap-1.5"><span class="text-[9px] font-mono font-bold uppercase tracking-wider '+cc+' border rounded px-2 py-0.5">'+p.category+'</span>'+(p.featured?'<span class="text-[9px] font-mono font-bold uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/20 rounded px-2 py-0.5">Featured</span>':'')+(!p.visible?'<span class="text-[9px] font-mono font-bold uppercase tracking-wider bg-red-500/15 text-red-400 border border-red-500/20 rounded px-2 py-0.5">Hidden</span>':'')+'</div></div><div class="p-4"><h4 class="font-display font-semibold text-sm mb-1 truncate">'+esc(p.title)+'</h4><p class="text-[11px] text-gray-600 leading-relaxed mb-3" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">'+esc(p.description)+'</p><div class="flex items-center gap-1.5 flex-wrap mb-3">'+tags+'</div><div class="flex items-center gap-2"><button onclick="editProject(\''+p.id+'\')" class="flex-1 py-2 rounded-lg bg-white/5 text-[11px] font-medium text-gray-400 hover:text-white hover:bg-white/[0.08] transition-all text-center"><iconify-icon icon="lucide:pencil" width="12" class="mr-1"></iconify-icon>Edit</button><button onclick="confirmDelete(\'project\',\''+p.id+'\')" class="flex-1 py-2 rounded-lg bg-red-500/5 text-[11px] font-medium text-red-400 hover:bg-red-500/10 transition-all text-center"><iconify-icon icon="lucide:trash-2" width="12" class="mr-1"></iconify-icon>Delete</button></div></div></div>';
+        }).join('');
+    }
+    function openProjectModal(data) {
+        document.getElementById('modalTitle').textContent=data?'Edit Project':'Add Project';
+        document.getElementById('projId').value=data?data.id:'';
+        document.getElementById('projTitle').value=data?data.title:'';
+        document.getElementById('projDesc').value=data?data.description:'';
+        document.getElementById('projImage').value=data?data.image:'';
+        document.getElementById('projCategory').value=data?data.category:'web';
+        document.getElementById('projOrder').value=data?(data.order||0):allProjects.length+1;
+        document.getElementById('projTags').value=data?(data.tags||[]).join(', '):'';
+        document.getElementById('projLive').value=data?(data.liveUrl||''):'';
+        document.getElementById('projGithub').value=data?(data.githubUrl||''):'';
+        var v=document.getElementById('projVisible');(data&&data.visible===false)?v.classList.remove('on'):v.classList.add('on');
+        var f=document.getElementById('projFeatured');(data&&data.featured)?f.classList.add('on'):f.classList.remove('on');
+        previewImage(data?data.image:'');
+        document.getElementById('projectModal').style.display='';
+    }
+    function closeProjectModal(){document.getElementById('projectModal').style.display='none';}
+    function previewImage(url){var w=document.getElementById('imgPreview'),i=document.getElementById('imgPreviewSrc');if(url){i.src=url;w.style.display='';}else w.style.display='none';}
+    function editProject(id){var p=allProjects.find(function(x){return x.id===id;});if(p)openProjectModal(p);}
+    function saveProject(form) {
+        if(!window._firebaseOK){toast('Firebase not connected','error');return;}
+        var id=document.getElementById('projId').value;
+        var data={title:document.getElementById('projTitle').value.trim(),description:document.getElementById('projDesc').value.trim(),image:document.getElementById('projImage').value.trim(),category:document.getElementById('projCategory').value,order:parseInt(document.getElementById('projOrder').value)||0,tags:document.getElementById('projTags').value.split(',').map(function(t){return t.trim();}).filter(Boolean),liveUrl:document.getElementById('projLive').value.trim(),githubUrl:document.getElementById('projGithub').value.trim(),visible:document.getElementById('projVisible').classList.contains('on'),featured:document.getElementById('projFeatured').classList.contains('on'),updatedAt:firebase.firestore.FieldValue.serverTimestamp()};
+        var save=id?db.collection('projects').doc(id).update(data):db.collection('projects').add(Object.assign({},data,{createdAt:firebase.firestore.FieldValue.serverTimestamp()}));
+        save.then(function(){toast(id?'Updated!':'Added!','success');closeProjectModal();form.reset();}).catch(function(err){toast('Error: '+err.message,'error');});
+    }
+
+    // ===== CONFIRM =====
+    var confirmCB=null;
+    function showConfirm(t,txt,cb){document.getElementById('confirmTitle').textContent=t;document.getElementById('confirmText').textContent=txt;confirmCB=cb;document.getElementById('confirmModal').style.display='';}
+    function closeConfirm(){document.getElementById('confirmModal').style.display='none';confirmCB=null;}
+    document.getElementById('confirmBtn').addEventListener('click',function(){if(confirmCB)confirmCB();closeConfirm();});
+    function confirmDelete(type,id){showConfirm('Delete this '+type+'?','',function(){if(!window._firebaseOK)return;db.collection(type==='message'?'messages':'projects').doc(id).delete().then(function(){toast('Deleted','success');}).catch(function(err){toast('Error','error');});});}
+
+    // ===== TOAST =====
+    function toast(msg,type){type=type||'info';var c={success:'border-emerald-500/20 bg-emerald-500/10 text-emerald-400',error:'border-red-500/20 bg-red-500/10 text-red-400',info:'border-[#4F8CFF]/20 bg-[#4F8CFF]/10 text-[#4F8CFF]'};var ic={success:'lucide:check-circle',error:'lucide:x-circle',info:'lucide:info'};var el=document.createElement('div');el.className='toast flex items-center gap-2.5 px-4 py-3 rounded-xl border '+c[type]+' text-xs font-medium backdrop-blur-xl';el.innerHTML='<iconify-icon icon="'+ic[type]+'" width="15"></iconify-icon>'+msg;document.getElementById('toastContainer').appendChild(el);setTimeout(function(){el.classList.add('toast-out');setTimeout(function(){el.remove();},300);},3000);}
+
+    // ===== HELPERS =====
+    function esc(s){if(!s)return '';var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+    function fmtDate(ts){if(!ts)return '';var d=ts.toDate?ts.toDate():new Date(ts),diff=Date.now()-d.getTime();if(diff<60000)return 'Just now';if(diff<3600000)return Math.floor(diff/60000)+'m ago';if(diff<86400000)return Math.floor(diff/3600000)+'h ago';if(diff<604800000)return Math.floor(diff/86400000)+'d ago';return d.toLocaleDateString('en',{month:'short',day:'numeric'});}
+    function fmtDateFull(ts){if(!ts)return '';var d=ts.toDate?ts.toDate():new Date(ts);return d.toLocaleDateString('en',{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});}
+    filterMsgs('all');
+    </script>
+</body>
+</html>
